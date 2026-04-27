@@ -9,7 +9,6 @@
 <style>
   :root {
     --red: #c0392b;
-    --red-dark: #96281b;
     --gold: #f39c12;
     --silver: #95a5a6;
     --bronze: #a04000;
@@ -23,269 +22,71 @@
     --muted: #8b949e;
     --dim: #484f58;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; min-height: 100vh; padding-bottom: 40px; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    min-height: 100vh;
-    padding-bottom: 40px;
-  }
+  header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
+  .skull { width: 34px; height: 34px; background: var(--red); clip-path: polygon(50% 0%,80% 20%,100% 50%,80% 80%,60% 100%,40% 100%,20% 80%,0% 50%,20% 20%); flex-shrink: 0; }
+  .header-text h1 { font-size: 17px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f0f6fc; }
+  .header-text p { font-size: 10px; color: var(--muted); font-family: 'Share Tech Mono', monospace; letter-spacing: 1px; }
+  .badge { margin-left: auto; background: var(--red); color: #ffe; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
 
-  header {
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .skull {
-    width: 36px; height: 36px;
-    background: var(--red);
-    clip-path: polygon(50% 0%,80% 20%,100% 50%,80% 80%,60% 100%,40% 100%,20% 80%,0% 50%,20% 20%);
-    flex-shrink: 0;
-  }
-
-  .header-text h1 {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #f0f6fc;
-  }
-
-  .header-text p {
-    font-size: 11px;
-    color: var(--muted);
-    font-family: 'Share Tech Mono', monospace;
-    letter-spacing: 1px;
-  }
-
-  .badge {
-    margin-left: auto;
-    background: var(--red);
-    color: #ffe;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
-
-  .tabs {
-    display: flex;
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    padding: 0 16px;
-  }
-
-  .tab {
-    flex: 1;
-    padding: 12px 0;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
+  .tabs { display: flex; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 8px; overflow-x: auto; }
+  .tab { flex-shrink: 0; padding: 12px 14px; text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
   .tab.active { color: var(--red); border-bottom-color: var(--red); }
 
-  .legend {
-    display: flex;
-    gap: 14px;
-    padding: 10px 16px;
-    flex-wrap: wrap;
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .legend span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: var(--muted);
-    font-family: 'Share Tech Mono', monospace;
-  }
-
-  .dot {
-    width: 8px; height: 8px;
-    border-radius: 2px;
-    display: inline-block;
-  }
+  .legend { display: flex; gap: 14px; padding: 10px 16px; flex-wrap: wrap; background: var(--bg2); border-bottom: 1px solid var(--border); }
+  .legend span { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); font-family: 'Share Tech Mono', monospace; }
+  .dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
 
   .list { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
-
   .panel { display: none; }
   .panel.active { display: block; }
 
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    animation: fadeUp 0.3s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .card:nth-child(1)  { animation-delay: 0.02s; }
-  .card:nth-child(2)  { animation-delay: 0.05s; }
-  .card:nth-child(3)  { animation-delay: 0.08s; }
-  .card:nth-child(4)  { animation-delay: 0.11s; }
-  .card:nth-child(5)  { animation-delay: 0.14s; }
-  .card:nth-child(6)  { animation-delay: 0.17s; }
-  .card:nth-child(7)  { animation-delay: 0.20s; }
-  .card:nth-child(8)  { animation-delay: 0.23s; }
-  .card:nth-child(9)  { animation-delay: 0.26s; }
-  .card:nth-child(10) { animation-delay: 0.29s; }
-
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 10px; animation: fadeUp 0.3s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   .card.top1 { border-color: #f39c12; }
   .card.top2 { border-color: #7f8c8d; }
   .card.top3 { border-color: #a04000; }
 
-  .rank-num {
-    font-size: 15px;
-    font-weight: 700;
-    min-width: 26px;
-    text-align: center;
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--dim);
-  }
-
+  .rank-num { font-size: 14px; font-weight: 700; min-width: 28px; text-align: center; font-family: 'Share Tech Mono', monospace; color: var(--dim); }
   .rank-num.gold   { color: var(--gold); }
   .rank-num.silver { color: var(--silver); }
   .rank-num.bronze { color: var(--bronze); }
 
   .info { flex: 1; min-width: 0; }
-
-  .name {
-    font-size: 15px;
-    font-weight: 600;
-    color: #f0f6fc;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 7px;
-  }
+  .name { font-size: 14px; font-weight: 600; color: #f0f6fc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 6px; }
 
   .bars { display: flex; flex-direction: column; gap: 4px; }
+  .bar-row { display: flex; align-items: center; gap: 6px; }
+  .bar-lbl { font-size: 10px; color: var(--dim); font-family: 'Share Tech Mono', monospace; width: 48px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 5px; border-radius: 3px; background: var(--bg3); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-val { font-size: 10px; color: var(--muted); font-family: 'Share Tech Mono', monospace; width: 38px; text-align: right; flex-shrink: 0; }
 
-  .bar-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .bar-lbl {
-    font-size: 10px;
-    color: var(--dim);
-    font-family: 'Share Tech Mono', monospace;
-    width: 48px;
-    flex-shrink: 0;
-  }
-
-  .bar-track {
-    flex: 1;
-    height: 5px;
-    border-radius: 3px;
-    background: var(--bg3);
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
-  }
-
-  .bar-val {
-    font-size: 10px;
-    color: var(--muted);
-    font-family: 'Share Tech Mono', monospace;
-    width: 38px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-
-  .score {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 42px;
-    padding: 6px 4px;
-    border-radius: 8px;
-    font-family: 'Share Tech Mono', monospace;
-  }
-
-  .score-num {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .score-lbl {
-    font-size: 9px;
-    margin-top: 2px;
-    opacity: 0.7;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
+  .score { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 42px; padding: 6px 4px; border-radius: 8px; font-family: 'Share Tech Mono', monospace; }
+  .score-num { font-size: 18px; font-weight: 700; line-height: 1; }
+  .score-lbl { font-size: 9px; margin-top: 2px; opacity: 0.7; letter-spacing: 1px; text-transform: uppercase; }
   .score.high { background: #0d2016; color: #3fb950; }
+  .score.mid  { background: #1a1a0a; color: #e3b341; }
   .score.low  { background: #1e0a0a; color: #f85149; }
 
-  .section-title {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-family: 'Share Tech Mono', monospace;
-    padding: 14px 16px 2px;
-  }
+  .section-title { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-family: 'Share Tech Mono', monospace; padding: 14px 16px 2px; }
+  .section-desc { font-size: 12px; color: var(--dim); padding: 2px 16px 8px; font-family: 'Share Tech Mono', monospace; }
 
-  .section-desc {
-    font-size: 12px;
-    color: var(--dim);
-    padding: 2px 16px 8px;
-    font-family: 'Share Tech Mono', monospace;
-  }
-
-  .formula {
-    margin: 8px 16px 0;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 12px;
-    color: var(--muted);
-    font-family: 'Share Tech Mono', monospace;
-    line-height: 1.7;
-  }
-
+  .formula { margin: 8px 16px 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--muted); font-family: 'Share Tech Mono', monospace; line-height: 1.7; }
   .formula strong { color: var(--text); }
+
+  .search-box { margin: 12px 16px 4px; }
+  .search-box input { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--text); font-family: 'Share Tech Mono', monospace; font-size: 13px; outline: none; transition: border-color 0.2s; }
+  .search-box input:focus { border-color: var(--red); }
+  .search-box input::placeholder { color: var(--dim); }
+
+  .all-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .all-rank { font-size: 13px; font-weight: 700; min-width: 28px; text-align: center; font-family: 'Share Tech Mono', monospace; color: var(--dim); flex-shrink: 0; }
+  .all-name { font-size: 14px; font-weight: 600; color: #f0f6fc; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .all-score { font-size: 14px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 36px; text-align: right; flex-shrink: 0; }
+  .all-bars { flex: 2; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 </style>
 </head>
 <body>
@@ -300,9 +101,10 @@
 </header>
 
 <div class="tabs">
-  <div class="tab active" onclick="showTab('top')">Top 10</div>
-  <div class="tab" onclick="showTab('bot')">Bottom 10</div>
-  <div class="tab" onclick="showTab('info')">Score Info</div>
+  <div class="tab active" onclick="showTab('top',this)">Top 10</div>
+  <div class="tab" onclick="showTab('bot',this)">Bottom 10</div>
+  <div class="tab" onclick="showTab('all',this)">All 100</div>
+  <div class="tab" onclick="showTab('info',this)">Score Info</div>
 </div>
 
 <div class="legend">
@@ -321,6 +123,12 @@
   <div class="section-title">Bottom 10 — lowest engagement</div>
   <div class="section-desc">Members who need to step up their activity</div>
   <div class="list" id="bot-list"></div>
+</div>
+
+<div id="panel-all" class="panel">
+  <div class="section-title">All 100 members</div>
+  <div class="search-box"><input type="text" id="searchInput" placeholder="Search member..." oninput="filterAll()"></div>
+  <div class="list" id="all-list"></div>
 </div>
 
 <div id="panel-info" class="panel">
@@ -452,9 +260,7 @@ function fmt(n) {
 }
 
 const scored = raw.map(d => {
-  const sp = d.power/maxP;
-  const sk = d.kills/maxK;
-  const sr = d.resources/maxR;
+  const sp = d.power/maxP, sk = d.kills/maxK, sr = d.resources/maxR;
   const score = Math.round((sp*0.4+sk*0.4+sr*0.2)*100);
   return {...d, score, sp, sk, sr};
 }).sort((a,b)=>b.score-a.score);
@@ -462,48 +268,60 @@ const scored = raw.map(d => {
 const top10 = scored.slice(0,10);
 const bot10 = scored.slice(-10).reverse();
 
+function scoreClass(s) { return s>=50?'high':s>=25?'mid':'low'; }
+
 function card(m, rank, isTop) {
   const rc = rank===1?'gold':rank===2?'silver':rank===3?'bronze':'';
   const cardCls = rank===1?'top1':rank===2?'top2':rank===3?'top3':'';
-  const scoreCls = isTop?'high':'low';
   const pct = v => Math.round(v*100);
   return `<div class="card ${cardCls}">
     <div class="rank-num ${rc}">#${rank}</div>
     <div class="info">
       <div class="name">${m.name}</div>
       <div class="bars">
-        <div class="bar-row">
-          <div class="bar-lbl">Power</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${pct(m.sp)}%;background:#378ADD"></div></div>
-          <div class="bar-val">${fmt(m.power)}</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-lbl">Kills</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${pct(m.sk)}%;background:#E24B4A"></div></div>
-          <div class="bar-val">${fmt(m.kills)}</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-lbl">Contrib.</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${pct(m.sr)}%;background:#1D9E75"></div></div>
-          <div class="bar-val">${fmt(m.resources)}</div>
-        </div>
+        <div class="bar-row"><div class="bar-lbl">Power</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sp)}%;background:#378ADD"></div></div><div class="bar-val">${fmt(m.power)}</div></div>
+        <div class="bar-row"><div class="bar-lbl">Kills</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sk)}%;background:#E24B4A"></div></div><div class="bar-val">${fmt(m.kills)}</div></div>
+        <div class="bar-row"><div class="bar-lbl">Contrib.</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sr)}%;background:#1D9E75"></div></div><div class="bar-val">${fmt(m.resources)}</div></div>
       </div>
     </div>
-    <div class="score ${scoreCls}">
-      <div class="score-num">${m.score}</div>
-      <div class="score-lbl">score</div>
+    <div class="score ${scoreClass(m.score)}"><div class="score-num">${m.score}</div><div class="score-lbl">score</div></div>
+  </div>`;
+}
+
+function allCard(m, rank) {
+  const rc = rank===1?'gold':rank===2?'silver':rank===3?'bronze':'';
+  const pct = v => Math.round(v*100);
+  return `<div class="all-card">
+    <div class="all-rank ${rc}">#${rank}</div>
+    <div class="info" style="min-width:0;flex:1">
+      <div class="name" style="margin-bottom:5px">${m.name}</div>
+      <div class="bars">
+        <div class="bar-row"><div class="bar-lbl">Power</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sp)}%;background:#378ADD"></div></div><div class="bar-val">${fmt(m.power)}</div></div>
+        <div class="bar-row"><div class="bar-lbl">Kills</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sk)}%;background:#E24B4A"></div></div><div class="bar-val">${fmt(m.kills)}</div></div>
+        <div class="bar-row"><div class="bar-lbl">Contrib.</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sr)}%;background:#1D9E75"></div></div><div class="bar-val">${fmt(m.resources)}</div></div>
+      </div>
     </div>
+    <div class="score ${scoreClass(m.score)}" style="margin-left:8px"><div class="score-num">${m.score}</div><div class="score-lbl">score</div></div>
   </div>`;
 }
 
 document.getElementById('top-list').innerHTML = top10.map((m,i)=>card(m,i+1,true)).join('');
 document.getElementById('bot-list').innerHTML = bot10.map((m,i)=>card(m,scored.length-i,false)).join('');
 
-function showTab(name) {
+const allHTML = scored.map((m,i)=>allCard(m,i+1)).join('');
+document.getElementById('all-list').innerHTML = allHTML;
+
+function filterAll() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = scored.filter(m=>m.name.toLowerCase().includes(q));
+  document.getElementById('all-list').innerHTML = filtered.map((m)=>allCard(m, scored.indexOf(m)+1)).join('');
+}
+
+function showTab(name, el) {
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
 }
 </script>
 </body>
