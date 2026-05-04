@@ -8,85 +8,73 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red: #c0392b;
-    --gold: #f39c12;
-    --silver: #95a5a6;
-    --bronze: #a04000;
-    --green: #27ae60;
-    --blue: #2980b9;
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --bg3: #21262d;
-    --border: #30363d;
-    --text: #e6edf3;
-    --muted: #8b949e;
-    --dim: #484f58;
+    --red:#c0392b; --gold:#f39c12; --silver:#95a5a6; --bronze:#a04000;
+    --bg:#0d1117; --bg2:#161b22; --bg3:#21262d; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --dim:#484f58;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; min-height: 100vh; padding-bottom: 40px; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;padding-bottom:40px;}
 
-  header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
-  .skull { width: 34px; height: 34px; background: var(--red); clip-path: polygon(50% 0%,80% 20%,100% 50%,80% 80%,60% 100%,40% 100%,20% 80%,0% 50%,20% 20%); flex-shrink: 0; }
-  .header-text h1 { font-size: 17px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f0f6fc; }
-  .header-text p { font-size: 10px; color: var(--muted); font-family: 'Share Tech Mono', monospace; letter-spacing: 1px; }
-  .badge { margin-left: auto; background: var(--red); color: #ffe; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
+  header{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;}
+  .skull{width:34px;height:34px;background:var(--red);clip-path:polygon(50% 0%,80% 20%,100% 50%,80% 80%,60% 100%,40% 100%,20% 80%,0% 50%,20% 20%);flex-shrink:0;}
+  .header-text h1{font-size:17px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#f0f6fc;}
+  .header-text p{font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+  .badge{margin-left:auto;background:var(--red);color:#ffe;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;}
 
-  .tabs { display: flex; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 8px; overflow-x: auto; }
-  .tab { flex-shrink: 0; padding: 12px 14px; text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
-  .tab.active { color: var(--red); border-bottom-color: var(--red); }
+  /* Alliance card */
+  .alliance-card{margin:12px 16px 0;background:linear-gradient(135deg,#1a1040 0%,#0d1117 100%);border:1px solid #4a3080;border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:center;}
+  .alliance-icon{width:48px;height:48px;background:#3d1f8a;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+  .alliance-info{flex:1;min-width:0;}
+  .alliance-name{font-size:16px;font-weight:700;color:#c9a0ff;letter-spacing:1px;}
+  .alliance-tag{font-size:11px;color:#8b6fd4;font-family:'Share Tech Mono',monospace;margin-bottom:6px;}
+  .alliance-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;}
+  .astat{font-size:11px;color:var(--muted);font-family:'Share Tech Mono',monospace;}
+  .astat span{color:#f0f6fc;font-weight:600;}
 
-  .legend { display: flex; gap: 14px; padding: 10px 16px; flex-wrap: wrap; background: var(--bg2); border-bottom: 1px solid var(--border); }
-  .legend span { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); font-family: 'Share Tech Mono', monospace; }
-  .dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+  .tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 8px;overflow-x:auto;margin-top:12px;}
+  .tab{flex-shrink:0;padding:12px 14px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+  .tab.active{color:var(--red);border-bottom-color:var(--red);}
 
-  .list { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
-  .panel { display: none; }
-  .panel.active { display: block; }
+  .legend{display:flex;gap:14px;padding:10px 16px;flex-wrap:wrap;background:var(--bg2);border-bottom:1px solid var(--border);}
+  .legend span{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-family:'Share Tech Mono',monospace;}
+  .dot{width:8px;height:8px;border-radius:2px;display:inline-block;}
 
-  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; align-items: center; gap: 10px; animation: fadeUp 0.3s ease both; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-  .card.top1 { border-color: #f39c12; }
-  .card.top2 { border-color: #7f8c8d; }
-  .card.top3 { border-color: #a04000; }
+  .list{padding:12px 16px;display:flex;flex-direction:column;gap:8px;}
+  .panel{display:none;} .panel.active{display:block;}
 
-  .rank-num { font-size: 14px; font-weight: 700; min-width: 28px; text-align: center; font-family: 'Share Tech Mono', monospace; color: var(--dim); }
-  .rank-num.gold   { color: var(--gold); }
-  .rank-num.silver { color: var(--silver); }
-  .rank-num.bronze { color: var(--bronze); }
+  .card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;animation:fadeUp 0.3s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .card.top1{border-color:#f39c12;} .card.top2{border-color:#7f8c8d;} .card.top3{border-color:#a04000;}
 
-  .info { flex: 1; min-width: 0; }
-  .name { font-size: 14px; font-weight: 600; color: #f0f6fc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 6px; }
+  .rank-num{font-size:14px;font-weight:700;min-width:28px;text-align:center;font-family:'Share Tech Mono',monospace;color:var(--dim);}
+  .rank-num.gold{color:var(--gold);} .rank-num.silver{color:var(--silver);} .rank-num.bronze{color:var(--bronze);}
 
-  .bars { display: flex; flex-direction: column; gap: 4px; }
-  .bar-row { display: flex; align-items: center; gap: 6px; }
-  .bar-lbl { font-size: 10px; color: var(--dim); font-family: 'Share Tech Mono', monospace; width: 48px; flex-shrink: 0; }
-  .bar-track { flex: 1; height: 5px; border-radius: 3px; background: var(--bg3); overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 3px; }
-  .bar-val { font-size: 10px; color: var(--muted); font-family: 'Share Tech Mono', monospace; width: 38px; text-align: right; flex-shrink: 0; }
+  .info{flex:1;min-width:0;}
+  .name{font-size:14px;font-weight:600;color:#f0f6fc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px;}
+  .bars{display:flex;flex-direction:column;gap:4px;}
+  .bar-row{display:flex;align-items:center;gap:6px;}
+  .bar-lbl{font-size:10px;color:var(--dim);font-family:'Share Tech Mono',monospace;width:48px;flex-shrink:0;}
+  .bar-track{flex:1;height:5px;border-radius:3px;background:var(--bg3);overflow:hidden;}
+  .bar-fill{height:100%;border-radius:3px;}
+  .bar-val{font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;width:38px;text-align:right;flex-shrink:0;}
 
-  .score { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 42px; padding: 6px 4px; border-radius: 8px; font-family: 'Share Tech Mono', monospace; }
-  .score-num { font-size: 18px; font-weight: 700; line-height: 1; }
-  .score-lbl { font-size: 9px; margin-top: 2px; opacity: 0.7; letter-spacing: 1px; text-transform: uppercase; }
-  .score.high { background: #0d2016; color: #3fb950; }
-  .score.mid  { background: #1a1a0a; color: #e3b341; }
-  .score.low  { background: #1e0a0a; color: #f85149; }
+  .score-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}
+  .score{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:42px;padding:6px 4px;border-radius:8px;font-family:'Share Tech Mono',monospace;}
+  .score-num{font-size:18px;font-weight:700;line-height:1;}
+  .score-lbl{font-size:9px;margin-top:2px;opacity:0.7;letter-spacing:1px;text-transform:uppercase;}
+  .score.high{background:#0d2016;color:#3fb950;} .score.mid{background:#1a1a0a;color:#e3b341;} .score.low{background:#1e0a0a;color:#f85149;}
 
-  .section-title { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-family: 'Share Tech Mono', monospace; padding: 14px 16px 2px; }
-  .section-desc { font-size: 12px; color: var(--dim); padding: 2px 16px 8px; font-family: 'Share Tech Mono', monospace; }
+  .change{font-size:11px;font-weight:700;font-family:'Share Tech Mono',monospace;display:flex;align-items:center;gap:2px;white-space:nowrap;}
+  .change.up{color:#3fb950;} .change.down{color:#f85149;} .change.same{color:var(--dim);}
 
-  .formula { margin: 8px 16px 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--muted); font-family: 'Share Tech Mono', monospace; line-height: 1.7; }
-  .formula strong { color: var(--text); }
-
-  .search-box { margin: 12px 16px 4px; }
-  .search-box input { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--text); font-family: 'Share Tech Mono', monospace; font-size: 13px; outline: none; transition: border-color 0.2s; }
-  .search-box input:focus { border-color: var(--red); }
-  .search-box input::placeholder { color: var(--dim); }
-
-  .all-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-  .all-rank { font-size: 13px; font-weight: 700; min-width: 28px; text-align: center; font-family: 'Share Tech Mono', monospace; color: var(--dim); flex-shrink: 0; }
-  .all-name { font-size: 14px; font-weight: 600; color: #f0f6fc; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .all-score { font-size: 14px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 36px; text-align: right; flex-shrink: 0; }
-  .all-bars { flex: 2; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .section-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'Share Tech Mono',monospace;padding:14px 16px 2px;}
+  .section-desc{font-size:12px;color:var(--dim);padding:2px 16px 8px;font-family:'Share Tech Mono',monospace;}
+  .formula{margin:8px 16px 0;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--muted);font-family:'Share Tech Mono',monospace;line-height:1.7;}
+  .formula strong{color:var(--text);}
+  .search-box{margin:12px 16px 4px;}
+  .search-box input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Share Tech Mono',monospace;font-size:13px;outline:none;transition:border-color 0.2s;}
+  .search-box input:focus{border-color:var(--red);}
+  .search-box input::placeholder{color:var(--dim);}
 </style>
 </head>
 <body>
@@ -95,10 +83,25 @@
   <div class="skull"></div>
   <div class="header-text">
     <h1>Alliance War Room</h1>
-    <p>Dark War: Survival · Member Rankings</p>
+    <p>Dark War: Survival · Week of May 3, 2026</p>
   </div>
   <div class="badge">R4 CMD</div>
 </header>
+
+<!-- Alliance info card -->
+<div class="alliance-card">
+  <div class="alliance-icon">☠</div>
+  <div class="alliance-info">
+    <div class="alliance-name">Deadly Sinners</div>
+    <div class="alliance-tag">&lt;SinS&gt; · All languages</div>
+    <div class="alliance-stats">
+      <div class="astat">Leader <span>H4rl3ysb0x</span></div>
+      <div class="astat">Members <span>100/100</span></div>
+      <div class="astat">Battle Power <span>65.67B</span></div>
+      <div class="astat">Updated <span>May 3, 2026</span></div>
+    </div>
+  </div>
+</div>
 
 <div class="tabs">
   <div class="tab active" onclick="showTab('top',this)">Top 10</div>
@@ -111,6 +114,8 @@
   <span><span class="dot" style="background:#378ADD"></span>Power</span>
   <span><span class="dot" style="background:#E24B4A"></span>Kills</span>
   <span><span class="dot" style="background:#1D9E75"></span>Contrib.</span>
+  <span><span style="color:#3fb950;font-size:12px">▲</span>Moved up</span>
+  <span><span style="color:#f85149;font-size:12px">▼</span>Moved down</span>
 </div>
 
 <div id="panel-top" class="panel active">
@@ -118,19 +123,16 @@
   <div class="section-desc">Ranked by combined score (power + kills + contribution)</div>
   <div class="list" id="top-list"></div>
 </div>
-
 <div id="panel-bot" class="panel">
   <div class="section-title">Bottom 10 — lowest engagement</div>
   <div class="section-desc">Members who need to step up their activity</div>
   <div class="list" id="bot-list"></div>
 </div>
-
 <div id="panel-all" class="panel">
   <div class="section-title">All 100 members</div>
   <div class="search-box"><input type="text" id="searchInput" placeholder="Search member..." oninput="filterAll()"></div>
   <div class="list" id="all-list"></div>
 </div>
-
 <div id="panel-info" class="panel">
   <div class="section-title">How scores are calculated</div>
   <div class="formula">
@@ -139,185 +141,205 @@
     <strong>Power</strong> — total battle power (BP)<br>
     <strong>Kills</strong> — total kills (Abates)<br>
     <strong>Contribution</strong> — weekly alliance contribution<br><br>
-    Data snapshot: April 26, 2026<br>
-    Total members ranked: 100
+    <strong>▲/▼</strong> — position change vs previous week<br><br>
+    Data snapshot: May 3, 2026 · Members: 100
   </div>
 </div>
 
 <script>
-const raw = [
-  {name:"Timmŷ",power:1234870872,resources:89260,kills:24403437},
-  {name:"LũNaTiC",power:1097924792,resources:79900,kills:31203430},
-  {name:"P4nti3R41dr",power:1073039571,resources:74920,kills:42549400},
-  {name:"• Sarah • 2",power:1063383409,resources:74020,kills:24359561},
-  {name:"CoverednBlood",power:1005908440,resources:58070,kills:14659463},
-  {name:"¥Mythic¥",power:942527302,resources:72940,kills:21911147},
-  {name:"H4rl3ysb0x",power:938882412,resources:52050,kills:11636777},
-  {name:"• Sarah •",power:902443630,resources:63580,kills:4906670},
-  {name:"ChristIsK1ng",power:899627560,resources:65620,kills:7817691},
-  {name:"Rage2334",power:879396236,resources:59170,kills:4103893},
-  {name:"SN4KEPRINCESS",power:854399430,resources:88900,kills:4246501},
-  {name:"Do0fy",power:853745111,resources:52300,kills:1109536},
-  {name:"Aevrax",power:836570681,resources:57640,kills:6738728},
-  {name:"Guidao",power:830218283,resources:86080,kills:4746278},
-  {name:"XabstractX",power:809867281,resources:70480,kills:6983552},
-  {name:"yupp4nti3s",power:809657201,resources:65180,kills:7618332},
-  {name:"BADBOY-007",power:796567799,resources:77630,kills:2372626},
-  {name:"BLACKBEARD",power:794346549,resources:83280,kills:3196944},
-  {name:"SUN G0D NIKA",power:789299031,resources:92620,kills:5949101},
-  {name:"Randomie",power:786417980,resources:84160,kills:1404561},
-  {name:"-Mana-",power:771912794,resources:85720,kills:2429294},
-  {name:"Ticklēmētimmŷ",power:766230103,resources:70180,kills:1582688},
-  {name:"Gadik13",power:752795921,resources:88760,kills:970465},
-  {name:"LATENIGHTSHADOW",power:752662487,resources:15320,kills:10469615},
-  {name:"Mermaid55",power:752303040,resources:82960,kills:7303401},
-  {name:"Deemac2",power:747357891,resources:23080,kills:414622},
-  {name:"Ch££sE",power:740479250,resources:42070,kills:7408945},
-  {name:"Marzann",power:732201791,resources:20280,kills:1453529},
-  {name:"Fido dog",power:721757837,resources:36050,kills:524504},
-  {name:"greypansies-OLAF",power:717503017,resources:26460,kills:868175},
-  {name:"Roubax",power:716149301,resources:56620,kills:3184173},
-  {name:"P1lus",power:713906647,resources:84040,kills:334202},
-  {name:"MoHAMMeD",power:712290166,resources:69360,kills:3709580},
-  {name:"bienmary",power:709907672,resources:51350,kills:2371955},
-  {name:"9Kaos9",power:709228628,resources:58420,kills:1651045},
-  {name:"Happy Vales",power:707266495,resources:54420,kills:22908},
-  {name:"P4nt1Dropper",power:704680506,resources:45650,kills:1985960},
-  {name:"--pepper--",power:702273884,resources:68440,kills:1012944},
-  {name:"Bleu Mage",power:699222532,resources:55780,kills:2439354},
-  {name:"P4nti3Jinx3r",power:698036945,resources:8510,kills:5891198},
-  {name:"Saikotsu",power:692175370,resources:89380,kills:1035930},
-  {name:"marybien",power:690198060,resources:54160,kills:1167307},
-  {name:"Oblivion",power:682591931,resources:68540,kills:2079470},
-  {name:"Z M A N",power:672237365,resources:82000,kills:5640676},
-  {name:"TheWeirdStar",power:664156472,resources:9440,kills:774861},
-  {name:"ReApR",power:662633979,resources:45670,kills:2410136},
-  {name:"TheGodfath3r",power:655676502,resources:61610,kills:1912039},
-  {name:"AuroraBrooke",power:654368159,resources:21800,kills:59662},
-  {name:"Petros K",power:654140023,resources:65620,kills:1630852},
-  {name:"OG22202",power:651749830,resources:59010,kills:699100},
-  {name:"Sk3ll13sG1rl",power:650031628,resources:19400,kills:779140},
-  {name:"Samanouske",power:648683467,resources:28050,kills:171108},
-  {name:"Tainted Jesus",power:637877209,resources:12500,kills:1168978},
-  {name:"P4nti3squid",power:632863281,resources:31510,kills:7090284},
-  {name:"BittencourtM",power:628449771,resources:60580,kills:5394882},
-  {name:"MED GHOST",power:626052967,resources:86200,kills:1360756},
-  {name:"Shawaal",power:621601361,resources:38750,kills:991536},
-  {name:"PoppySia",power:614461498,resources:33870,kills:286805},
-  {name:"TheHeroSB",power:613642008,resources:84700,kills:4617419},
-  {name:"Alice doCAPS",power:613408807,resources:15980,kills:2738904},
-  {name:"Awaryjny",power:608654770,resources:47260,kills:587984},
-  {name:"Qereq",power:606749175,resources:68990,kills:555337},
-  {name:"P4nt13-Royal",power:605979076,resources:11410,kills:714321},
-  {name:"Haryana Boy",power:605928825,resources:83180,kills:468908},
-  {name:"DamageVA",power:604887682,resources:55240,kills:714728},
-  {name:"Aphröditēēē",power:599075070,resources:30050,kills:1291571},
-  {name:"roma2706",power:596511777,resources:28920,kills:563568},
-  {name:"Nick'",power:592264407,resources:46930,kills:961959},
-  {name:"mohammed RM",power:585026729,resources:48050,kills:686587},
-  {name:"mikhto",power:585024599,resources:54170,kills:1996700},
-  {name:"°Ishaan°",power:582796961,resources:68090,kills:2823262},
-  {name:"Miingau",power:569237848,resources:72880,kills:2000916},
-  {name:"JabberWocky9",power:567628086,resources:6120,kills:308868},
-  {name:"PelicanEcho",power:566644614,resources:43720,kills:175194},
-  {name:"Azooz97",power:550768948,resources:18770,kills:2162227},
-  {name:"Claayyy-",power:539667053,resources:15090,kills:1271396},
-  {name:"GaryMichael",power:533580862,resources:80860,kills:517560},
-  {name:"Og Yocs",power:527287749,resources:21640,kills:5442980},
-  {name:"QdMn",power:524166438,resources:45780,kills:224338},
-  {name:"adøre",power:521339483,resources:67150,kills:195433},
-  {name:"Frankiejay",power:511570520,resources:37100,kills:165824},
-  {name:"• AAAA • TH • •",power:511071257,resources:59930,kills:1737291},
-  {name:"TheRealK1ng",power:478258866,resources:4450,kills:348840},
-  {name:"• BOB • P4NTIE •",power:475799498,resources:0,kills:1553084},
-  {name:"GREM",power:470934339,resources:0,kills:1611811},
-  {name:"The MaReSiA",power:466682497,resources:34720,kills:1329283},
-  {name:"Mark",power:461678544,resources:5350,kills:410217},
-  {name:"DJAVU",power:455878223,resources:50490,kills:550032},
-  {name:"Juliasj",power:454873879,resources:23700,kills:224490},
-  {name:"Kilr0y",power:450459646,resources:47010,kills:42749},
-  {name:"P4nti3Sl4yeR",power:444918244,resources:12810,kills:404872},
-  {name:"Yumena",power:429136842,resources:33360,kills:1302284},
-  {name:"lilyrosee",power:405242927,resources:66220,kills:838665},
-  {name:"The volibear",power:394793051,resources:13140,kills:901835},
-  {name:"El VooDooDaddy",power:389303910,resources:2300,kills:960770},
-  {name:"presidentebender",power:324413960,resources:0,kills:1893004},
-  {name:"Don Richard",power:321357163,resources:0,kills:173173},
-  {name:"P4nt135hr3k",power:313853196,resources:90,kills:649932},
-  {name:"obaethis",power:298218735,resources:0,kills:554933},
-  {name:"Mysticfox420",power:256486398,resources:0,kills:707562}
+// Previous week rankings (April 26)
+const prevRanks={
+  "Timmŷ":1,"LũNaTiC":2,"P4nti3R41dr":3,"• Sarah • 2":4,"CoverednBlood":5,
+  "¥Mythic¥":6,"H4rl3ysb0x":7,"• Sarah •":8,"ChristIsK1ng":9,"Rage2334":10,
+  "SN4KEPRINCESS":11,"Do0fy":12,"Aevrax":13,"Guidao":14,"XabstractX":15,
+  "yupp4nti3s":16,"BADBOY-007":17,"BLACKBEARD":18,"SUN G0D NIKA":19,"Randomie":20,
+  "-Mana-":21,"Ticklēmētimmŷ":22,"Gadik13":23,"LATENIGHTSHADOW":24,"Mermaid55":25,
+  "Deemac2":26,"Ch££sE":27,"Marzann":28,"Fido dog":29,"greypansies-OLAF":30,
+  "Roubax":31,"P1lus":32,"MoHAMMeD":33,"bienmary":34,"9Kaos9":35,
+  "Happy Vales":36,"P4nt1Dropper":37,"--pepper--":38,"Bleu Mage":39,"P4nti3Jinx3r":40,
+  "Saikotsu":41,"marybien":42,"Oblivion":43,"Z M A N":44,"TheWeirdStar":45,
+  "ReApR":46,"TheGodfath3r":47,"AuroraBrooke":48,"Petros K":49,"OG22202":50,
+  "Sk3ll13sG1rl":51,"Samanouske":52,"Tainted Jesus":53,"P4nti3squid":54,"BittencourtM":55,
+  "MED GHOST":56,"Shawaal":57,"PoppySia":58,"TheHeroSB":59,"Alice doCAPS":60,
+  "Awaryjny":61,"Qereq":62,"P4nt13-Royal":63,"Haryana Boy":64,"DamageVA":65,
+  "Aphröditēēē":66,"roma2706":67,"Nick'":68,"mohammed RM":69,"mikhto":70,
+  "°Ishaan°":71,"Miingau":72,"JabberWocky9":73,"PelicanEcho":74,"Azooz97":75,
+  "Claayyy-":76,"GaryMichael":77,"Og Yocs":78,"QdMn":79,"adøre":80,
+  "Frankiejay":81,"• AAAA • TH • •":82,"TheRealK1ng":83,"• BOB • P4NTIE •":84,
+  "GREM":85,"The MaReSiA":86,"Mark":87,"DJAVU":88,"Juliasj":89,"Kilr0y":90,
+  "P4nti3Sl4yeR":91,"Yumena":92,"lilyrosee":93,"The volibear":94,"El VooDooDaddy":95,
+  "presidentebender":96,"Don Richard":97,"P4nt135hr3k":98,"obaethis":99,"Mysticfox420":100
+};
+
+const raw=[
+  {name:"Timmŷ",power:1232344741,kills:26473360,resources:80560},
+  {name:"LũNaTiC",power:1136303992,kills:31854239,resources:79360},
+  {name:"P4nti3R41dr",power:1090278790,kills:45787728,resources:76600},
+  {name:"• Sarah • 2",power:1081438491,kills:24436519,resources:66890},
+  {name:"CoverednBlood",power:987173642,kills:14700421,resources:48790},
+  {name:"H4rl3ysb0x",power:960508120,kills:13060802,resources:61360},
+  {name:"¥Mythic¥",power:936079659,kills:22713454,resources:61620},
+  {name:"Rage2334",power:894112287,kills:4110880,resources:54040},
+  {name:"ChristIsK1ng",power:888319961,kills:8096365,resources:72040},
+  {name:"• Sarah •",power:886324942,kills:4914519,resources:62220},
+  {name:"SN4KEPRINCESS",power:869607789,kills:4300908,resources:95980},
+  {name:"Aevrax",power:851926923,kills:6788871,resources:67480},
+  {name:"Guidao",power:851197102,kills:4758867,resources:66760},
+  {name:"SUN G0D NIKA",power:845914801,kills:6118018,resources:92500},
+  {name:"Do0fy",power:835276471,kills:1161341,resources:57160},
+  {name:"XabstractX",power:823371919,kills:6996504,resources:68080},
+  {name:"BADBOY-007",power:815076401,kills:2396000,resources:76020},
+  {name:"BLACKBEARD",power:812494815,kills:3219407,resources:94790},
+  {name:"-Mana-",power:802428871,kills:2430340,resources:72340},
+  {name:"Randomie",power:799554352,kills:1404561,resources:64980},
+  {name:"Ymmït",power:784850983,kills:1584382,resources:57950},
+  {name:"Gadik13",power:765115070,kills:970465,resources:84400},
+  {name:"Deemac2",power:760754437,kills:414622,resources:21710},
+  {name:"MoHAMMeD",power:746607706,kills:3737305,resources:72220},
+  {name:"peppër",power:746514553,kills:1048792,resources:64010},
+  {name:"Marzann",power:743660511,kills:1453529,resources:33660},
+  {name:"Roubax",power:737202852,kills:3284062,resources:58240},
+  {name:"Ch££sE",power:736466757,kills:7436190,resources:31660},
+  {name:"greypansies-OLAF",power:734396349,kills:874378,resources:65260},
+  {name:"Fido dog",power:734302350,kills:533844,resources:46550},
+  {name:"P1lus",power:729158672,kills:367313,resources:72400},
+  {name:"9Kaos9",power:723830671,kills:1682143,resources:72460},
+  {name:"P4nt1Dropper",power:719758063,kills:2200497,resources:32320},
+  {name:"Bleu Mage",power:716830911,kills:2470605,resources:69580},
+  {name:"Mermaid55",power:715190640,kills:7514051,resources:88720},
+  {name:"Happy Vales",power:713909832,kills:28880,resources:40700},
+  {name:"bienmary",power:707129423,kills:2418872,resources:54450},
+  {name:"P4nti3Jinx3r",power:704550866,kills:5891198,resources:16190},
+  {name:"Alice doCAPS",power:701228886,kills:2761667,resources:14590},
+  {name:"marybien",power:699985378,kills:1187815,resources:56220},
+  {name:"Saikotsu",power:696448660,kills:1135322,resources:90820},
+  {name:"Oblivion",power:691979341,kills:2080738,resources:44960},
+  {name:"Sk3ll13sG1rl",power:675598918,kills:790628,resources:3910},
+  {name:"TheWeirdStar",power:673940056,kills:774861,resources:21610},
+  {name:"TheGodfath3r",power:668259292,kills:1913055,resources:53700},
+  {name:"AuroraBrooke",power:666262309,kills:59662,resources:46100},
+  {name:"OG22202",power:663466872,kills:699100,resources:68530},
+  {name:"Samanouske",power:661302840,kills:171108,resources:19760},
+  {name:"BittencourtM",power:661049372,kills:5557695,resources:58840},
+  {name:"yupp4nti3s",power:658120190,kills:8133765,resources:70780},
+  {name:"Shawaal",power:633581510,kills:1007698,resources:38050},
+  {name:"PoppySia",power:627934678,kills:336999,resources:40230},
+  {name:"mikhto",power:625832447,kills:2172558,resources:67290},
+  {name:"Petros K",power:624795200,kills:1681122,resources:59320},
+  {name:"Qereq",power:621527389,kills:556765,resources:71260},
+  {name:"TheHeroSB",power:621479431,kills:4777806,resources:91300},
+  {name:"Haryana Boy",power:620127868,kills:487484,resources:89120},
+  {name:"DamageVA",power:614530192,kills:725280,resources:60580},
+  {name:"Nick'",power:614034419,kills:961959,resources:35680},
+  {name:"P4nt13-Royal",power:612858637,kills:729756,resources:24000},
+  {name:"°Ishaan°",power:612732616,kills:2942115,resources:81220},
+  {name:"Awaryjny",power:612458609,kills:591012,resources:33320},
+  {name:"Aphröditēēē",power:612342567,kills:1317399,resources:29670},
+  {name:"Tainted Jesus",power:609948847,kills:1239558,resources:25650},
+  {name:"roma2706",power:608295834,kills:563568,resources:26480},
+  {name:"mohammed RM",power:602058423,kills:686656,resources:44140},
+  {name:"MED GHOST",power:600695140,kills:1465374,resources:82660},
+  {name:"Z M A N",power:597286891,kills:5924296,resources:45100},
+  {name:"Miingau",power:596751477,kills:2002787,resources:65740},
+  {name:"ReApR",power:590723756,kills:2416554,resources:72200},
+  {name:"P4nti3squid",power:587978450,kills:7263929,resources:31600},
+  {name:"PelicanEcho",power:579610003,kills:175134,resources:42900},
+  {name:"OBAEda3rdLEGend",power:579495180,kills:309549,resources:10560},
+  {name:"QdMn",power:542846038,kills:224338,resources:59640},
+  {name:"GaryMichael",power:542174122,kills:520590,resources:64840},
+  {name:"Frankiejay",power:538879640,kills:165824,resources:74020},
+  {name:"Og Yocs",power:534719188,kills:5443314,resources:12330},
+  {name:"adøre",power:533205320,kills:211588,resources:72900},
+  {name:"• AAAA • TH • •",power:523448804,kills:1809613,resources:55570},
+  {name:"Azooz97",power:497523055,kills:2193120,resources:13210},
+  {name:"lilyrosee",power:495703325,kills:882354,resources:72340},
+  {name:"TheRealK1ng",power:491968788,kills:353104,resources:36440},
+  {name:"The MaReSiA",power:487210627,kills:1329743,resources:37830},
+  {name:"• BOB • P4NTIE •",power:475799498,kills:1553084,resources:0},
+  {name:"DJAVU",power:474934223,kills:550123,resources:46040},
+  {name:"GREM",power:469451709,kills:1611875,resources:0},
+  {name:"Juliasj",power:462207953,kills:224490,resources:29410},
+  {name:"Kilr0y",power:459709467,kills:42771,resources:56110},
+  {name:"Mark",power:458297480,kills:410217,resources:2620},
+  {name:"P4nti3Sl4yeR",power:445776906,kills:410175,resources:8130},
+  {name:"The volibear",power:438121501,kills:910990,resources:8560},
+  {name:"Claayyy-",power:428609693,kills:1282701,resources:5910},
+  {name:"El VooDooDaddy",power:403995606,kills:960770,resources:6870},
+  {name:"Fëanor •",power:381376644,kills:555150,resources:45350},
+  {name:"commandant1",power:325101060,kills:169134,resources:8590},
+  {name:"presidentebender",power:324413960,kills:1893005,resources:0},
+  {name:"Yumena",power:323164314,kills:1309217,resources:14530},
+  {name:"P4nt135hr3k",power:302975466,kills:650803,resources:0},
+  {name:"Mysticfox420",power:256212648,kills:707562,resources:0},
+  {name:"Don Richard",power:239936773,kills:173251,resources:0}
 ];
 
-const maxP = Math.max(...raw.map(d=>d.power));
-const maxK = Math.max(...raw.map(d=>d.kills));
-const maxR = Math.max(...raw.map(d=>d.resources));
+const maxP=Math.max(...raw.map(d=>d.power));
+const maxK=Math.max(...raw.map(d=>d.kills));
+const maxR=Math.max(...raw.map(d=>d.resources));
 
-function fmt(n) {
-  if(n>=1e9) return (n/1e9).toFixed(1)+'B';
-  if(n>=1e6) return (n/1e6).toFixed(1)+'M';
-  if(n>=1e3) return (n/1e3).toFixed(0)+'K';
+function fmt(n){
+  if(n>=1e9)return(n/1e9).toFixed(1)+'B';
+  if(n>=1e6)return(n/1e6).toFixed(1)+'M';
+  if(n>=1e3)return(n/1e3).toFixed(0)+'K';
   return n.toString();
 }
 
-const scored = raw.map(d => {
-  const sp = d.power/maxP, sk = d.kills/maxK, sr = d.resources/maxR;
-  const score = Math.round((sp*0.4+sk*0.4+sr*0.2)*100);
-  return {...d, score, sp, sk, sr};
+const scored=raw.map(d=>{
+  const sp=d.power/maxP,sk=d.kills/maxK,sr=d.resources/maxR;
+  const score=Math.round((sp*0.4+sk*0.4+sr*0.2)*100);
+  return{...d,score,sp,sk,sr};
 }).sort((a,b)=>b.score-a.score);
 
-const top10 = scored.slice(0,10);
-const bot10 = scored.slice(-10).reverse();
+// assign current ranks
+scored.forEach((m,i)=>m.currentRank=i+1);
 
-function scoreClass(s) { return s>=50?'high':s>=25?'mid':'low'; }
+const top10=scored.slice(0,10);
+const bot10=scored.slice(-10).reverse();
 
-function card(m, rank, isTop) {
-  const rc = rank===1?'gold':rank===2?'silver':rank===3?'bronze':'';
-  const cardCls = rank===1?'top1':rank===2?'top2':rank===3?'top3':'';
-  const pct = v => Math.round(v*100);
-  return `<div class="card ${cardCls}">
+function sc(s){return s>=50?'high':s>=25?'mid':'low';}
+
+function changeTag(m){
+  const prev=prevRanks[m.name];
+  if(!prev)return`<div class="change up">★ NEW</div>`;
+  const diff=prev-m.currentRank;
+  if(diff>0)return`<div class="change up">▲${diff}</div>`;
+  if(diff<0)return`<div class="change down">▼${Math.abs(diff)}</div>`;
+  return`<div class="change same">—</div>`;
+}
+
+function card(m,rank){
+  const rc=rank===1?'gold':rank===2?'silver':rank===3?'bronze':'';
+  const cc=rank===1?'top1':rank===2?'top2':rank===3?'top3':'';
+  const p=v=>Math.round(v*100);
+  return`<div class="card ${cc}">
     <div class="rank-num ${rc}">#${rank}</div>
     <div class="info">
       <div class="name">${m.name}</div>
       <div class="bars">
-        <div class="bar-row"><div class="bar-lbl">Power</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sp)}%;background:#378ADD"></div></div><div class="bar-val">${fmt(m.power)}</div></div>
-        <div class="bar-row"><div class="bar-lbl">Kills</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sk)}%;background:#E24B4A"></div></div><div class="bar-val">${fmt(m.kills)}</div></div>
-        <div class="bar-row"><div class="bar-lbl">Contrib.</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sr)}%;background:#1D9E75"></div></div><div class="bar-val">${fmt(m.resources)}</div></div>
+        <div class="bar-row"><div class="bar-lbl">Power</div><div class="bar-track"><div class="bar-fill" style="width:${p(m.sp)}%;background:#378ADD"></div></div><div class="bar-val">${fmt(m.power)}</div></div>
+        <div class="bar-row"><div class="bar-lbl">Kills</div><div class="bar-track"><div class="bar-fill" style="width:${p(m.sk)}%;background:#E24B4A"></div></div><div class="bar-val">${fmt(m.kills)}</div></div>
+        <div class="bar-row"><div class="bar-lbl">Contrib.</div><div class="bar-track"><div class="bar-fill" style="width:${p(m.sr)}%;background:#1D9E75"></div></div><div class="bar-val">${fmt(m.resources)}</div></div>
       </div>
     </div>
-    <div class="score ${scoreClass(m.score)}"><div class="score-num">${m.score}</div><div class="score-lbl">score</div></div>
+    <div class="score-col">
+      <div class="score ${sc(m.score)}"><div class="score-num">${m.score}</div><div class="score-lbl">score</div></div>
+      ${changeTag(m)}
+    </div>
   </div>`;
 }
 
-function allCard(m, rank) {
-  const rc = rank===1?'gold':rank===2?'silver':rank===3?'bronze':'';
-  const pct = v => Math.round(v*100);
-  return `<div class="all-card">
-    <div class="all-rank ${rc}">#${rank}</div>
-    <div class="info" style="min-width:0;flex:1">
-      <div class="name" style="margin-bottom:5px">${m.name}</div>
-      <div class="bars">
-        <div class="bar-row"><div class="bar-lbl">Power</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sp)}%;background:#378ADD"></div></div><div class="bar-val">${fmt(m.power)}</div></div>
-        <div class="bar-row"><div class="bar-lbl">Kills</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sk)}%;background:#E24B4A"></div></div><div class="bar-val">${fmt(m.kills)}</div></div>
-        <div class="bar-row"><div class="bar-lbl">Contrib.</div><div class="bar-track"><div class="bar-fill" style="width:${pct(m.sr)}%;background:#1D9E75"></div></div><div class="bar-val">${fmt(m.resources)}</div></div>
-      </div>
-    </div>
-    <div class="score ${scoreClass(m.score)}" style="margin-left:8px"><div class="score-num">${m.score}</div><div class="score-lbl">score</div></div>
-  </div>`;
+document.getElementById('top-list').innerHTML=top10.map((m,i)=>card(m,i+1)).join('');
+document.getElementById('bot-list').innerHTML=bot10.map((m,i)=>card(m,scored.length-i)).join('');
+document.getElementById('all-list').innerHTML=scored.map((m,i)=>card(m,i+1)).join('');
+
+function filterAll(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  const f=scored.filter(m=>m.name.toLowerCase().includes(q));
+  document.getElementById('all-list').innerHTML=f.map(m=>card(m,m.currentRank)).join('');
 }
 
-document.getElementById('top-list').innerHTML = top10.map((m,i)=>card(m,i+1,true)).join('');
-document.getElementById('bot-list').innerHTML = bot10.map((m,i)=>card(m,scored.length-i,false)).join('');
-
-const allHTML = scored.map((m,i)=>allCard(m,i+1)).join('');
-document.getElementById('all-list').innerHTML = allHTML;
-
-function filterAll() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  const filtered = scored.filter(m=>m.name.toLowerCase().includes(q));
-  document.getElementById('all-list').innerHTML = filtered.map((m)=>allCard(m, scored.indexOf(m)+1)).join('');
-}
-
-function showTab(name, el) {
+function showTab(name,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
