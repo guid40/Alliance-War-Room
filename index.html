@@ -13,7 +13,7 @@
     --text:#e6edf3; --muted:#8b949e; --dim:#484f58;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;padding-bottom:40px;}
+  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;padding-bottom:0;}
 
   header{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;}
   .skull{width:34px;height:34px;background:var(--red);clip-path:polygon(50% 0%,80% 20%,100% 50%,80% 80%,60% 100%,40% 100%,20% 80%,0% 50%,20% 20%);flex-shrink:0;}
@@ -22,17 +22,20 @@
   .badge{margin-left:auto;background:var(--red);color:#ffe;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;}
 
   /* Alliance card */
-  .alliance-card{margin:12px 16px 0;background:linear-gradient(135deg,#1a1040 0%,#0d1117 100%);border:1px solid #4a3080;border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:center;}
-  .alliance-icon{width:48px;height:48px;background:#3d1f8a;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+  .alliance-wrap{padding:12px 14px 0;}
+  .alliance-card{background:linear-gradient(135deg,#1a1040 0%,#0d1117 100%);border:1px solid #4a3080;border-radius:12px;padding:14px;display:flex;gap:12px;align-items:center;box-shadow:0 4px 16px rgba(0,0,0,0.5),inset 0 1px 0 rgba(200,150,42,0.2);position:relative;overflow:hidden;}
+  .alliance-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(150,100,255,0.6),transparent);}
+  .alliance-emblem{width:54px;height:54px;background:linear-gradient(135deg,#4a1a6a,#2a0e4a);border:2px solid #7a50c0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.5);}
   .alliance-info{flex:1;min-width:0;}
-  .alliance-name{font-size:16px;font-weight:700;color:#c9a0ff;letter-spacing:1px;}
-  .alliance-tag{font-size:11px;color:#8b6fd4;font-family:'Share Tech Mono',monospace;margin-bottom:6px;}
-  .alliance-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;}
-  .astat{font-size:11px;color:var(--muted);font-family:'Share Tech Mono',monospace;}
+  .alliance-name{font-size:15px;font-weight:700;color:#c9a0ff;letter-spacing:1px;font-family:'Rajdhani',sans-serif;margin-bottom:2px;}
+  .alliance-tag{font-size:10px;color:#8b6fd4;font-family:'Share Tech Mono',monospace;margin-bottom:8px;}
+  .alliance-stats{display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;}
+  .astat{font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;}
   .astat span{color:#f0f6fc;font-weight:600;}
 
   .tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 8px;overflow-x:auto;margin-top:12px;}
   .tab{flex-shrink:0;padding:12px 14px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+  .tab:hover{color:var(--text);}
   .tab.active{color:var(--red);border-bottom-color:var(--red);}
 
   .legend{display:flex;gap:14px;padding:10px 16px;flex-wrap:wrap;background:var(--bg2);border-bottom:1px solid var(--border);}
@@ -47,7 +50,7 @@
   .card.top1{border-color:#f39c12;} .card.top2{border-color:#7f8c8d;} .card.top3{border-color:#a04000;}
 
   .rank-num{font-size:14px;font-weight:700;min-width:28px;text-align:center;font-family:'Share Tech Mono',monospace;color:var(--dim);}
-  .rank-num.gold{color:var(--gold);} .rank-num.silver{color:var(--silver);} .rank-num.bronze{color:var(--bronze);}
+  .rank-num.gold{color:var(--gold);} .rank-num.silver{color:var(--silver);} .rank-num.bronze{color:#a04000;}
 
   .info{flex:1;min-width:0;}
   .name{font-size:14px;font-weight:600;color:#f0f6fc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px;}
@@ -64,17 +67,32 @@
   .score-lbl{font-size:9px;margin-top:2px;opacity:0.7;letter-spacing:1px;text-transform:uppercase;}
   .score.high{background:#0d2016;color:#3fb950;} .score.mid{background:#1a1a0a;color:#e3b341;} .score.low{background:#1e0a0a;color:#f85149;}
 
-  .change{font-size:11px;font-weight:700;font-family:'Share Tech Mono',monospace;display:flex;align-items:center;gap:2px;white-space:nowrap;}
-  .change.up{color:#3fb950;} .change.down{color:#f85149;} .change.same{color:var(--dim);}
+  .change{font-size:11px;font-weight:700;font-family:'Share Tech Mono',monospace;display:flex;align-items:center;gap:1px;white-space:nowrap;}
+  .change.up{color:#3fb950;} .change.down{color:#f85149;} .change.same{color:var(--dim);} .change.newm{color:#7a8fff;font-size:9px;}
 
   .section-title{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'Share Tech Mono',monospace;padding:14px 16px 2px;}
   .section-desc{font-size:12px;color:var(--dim);padding:2px 16px 8px;font-family:'Share Tech Mono',monospace;}
   .formula{margin:8px 16px 0;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--muted);font-family:'Share Tech Mono',monospace;line-height:1.7;}
   .formula strong{color:var(--text);}
+
   .search-box{margin:12px 16px 4px;}
   .search-box input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Share Tech Mono',monospace;font-size:13px;outline:none;transition:border-color 0.2s;}
   .search-box input:focus{border-color:var(--red);}
   .search-box input::placeholder{color:var(--dim);}
+
+  /* Footer */
+  .footer{
+    margin-top:32px;
+    padding:16px;
+    border-top:1px solid var(--border);
+    text-align:center;
+    font-family:'Share Tech Mono',monospace;
+    font-size:11px;
+    color:var(--dim);
+    letter-spacing:1px;
+  }
+  .footer span{color:var(--muted);}
+  .footer strong{color:#c0392b;letter-spacing:2px;}
 </style>
 </head>
 <body>
@@ -88,17 +106,18 @@
   <div class="badge">R4 CMD</div>
 </header>
 
-<!-- Alliance info card -->
-<div class="alliance-card">
-  <div class="alliance-icon">☠</div>
-  <div class="alliance-info">
-    <div class="alliance-name">Deadly Sinners</div>
-    <div class="alliance-tag">&lt;SinS&gt; · All languages</div>
-    <div class="alliance-stats">
-      <div class="astat">Leader <span>H4rl3ysb0x</span></div>
-      <div class="astat">Members <span>100/100</span></div>
-      <div class="astat">Battle Power <span>65.67B</span></div>
-      <div class="astat">Updated <span>May 3, 2026</span></div>
+<div class="alliance-wrap">
+  <div class="alliance-card">
+    <div class="alliance-emblem">☠</div>
+    <div class="alliance-info">
+      <div class="alliance-name">Deadly Sinners</div>
+      <div class="alliance-tag">&lt;SinS&gt; · All Languages</div>
+      <div class="alliance-stats">
+        <div class="astat">⚜ Leader <span>H4rl3ysb0x</span></div>
+        <div class="astat">👥 Members <span>100 / 100</span></div>
+        <div class="astat">⚔ Battle Power <span>65.67B</span></div>
+        <div class="astat">📅 Updated <span>May 3, 2026</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -114,8 +133,9 @@
   <span><span class="dot" style="background:#378ADD"></span>Power</span>
   <span><span class="dot" style="background:#E24B4A"></span>Kills</span>
   <span><span class="dot" style="background:#1D9E75"></span>Contrib.</span>
-  <span><span style="color:#3fb950;font-size:12px">▲</span>Moved up</span>
-  <span><span style="color:#f85149;font-size:12px">▼</span>Moved down</span>
+  <span style="color:#3fb950;font-size:12px">▲ Up</span>
+  <span style="color:#f85149;font-size:12px">▼ Down</span>
+  <span style="color:#7a8fff;font-size:11px">★ New</span>
 </div>
 
 <div id="panel-top" class="panel active">
@@ -140,14 +160,21 @@
     Each metric is normalized against the top member in that category (0–100%).<br><br>
     <strong>Power</strong> — total battle power (BP)<br>
     <strong>Kills</strong> — total kills (Abates)<br>
-    <strong>Contribution</strong> — weekly alliance contribution<br><br>
-    <strong>▲/▼</strong> — position change vs previous week<br><br>
-    Data snapshot: May 3, 2026 · Members: 100
+    <strong>Contribution</strong> — weekly alliance contribution<br>
+    <strong>▲ / ▼</strong> — position change vs. previous week<br>
+    <strong>★ New</strong> — new member this week<br><br>
+    Data snapshot: May 3, 2026 · Members: 100/100<br>
+    Alliance Battle Power: 65,670,364,962
   </div>
 </div>
 
+<!-- FOOTER -->
+<div class="footer">
+  <span>[ </span><strong>SinS</strong><span> · Dark War: Survival · Alliance War Room ]</span><br><br>
+  <span>brought to you by </span><strong>Guidao</strong>
+</div>
+
 <script>
-// Previous week rankings (April 26)
 const prevRanks={
   "Timmŷ":1,"LũNaTiC":2,"P4nti3R41dr":3,"• Sarah • 2":4,"CoverednBlood":5,
   "¥Mythic¥":6,"H4rl3ysb0x":7,"• Sarah •":8,"ChristIsK1ng":9,"Rage2334":10,
@@ -290,8 +317,6 @@ const scored=raw.map(d=>{
   const score=Math.round((sp*0.4+sk*0.4+sr*0.2)*100);
   return{...d,score,sp,sk,sr};
 }).sort((a,b)=>b.score-a.score);
-
-// assign current ranks
 scored.forEach((m,i)=>m.currentRank=i+1);
 
 const top10=scored.slice(0,10);
@@ -301,7 +326,7 @@ function sc(s){return s>=50?'high':s>=25?'mid':'low';}
 
 function changeTag(m){
   const prev=prevRanks[m.name];
-  if(!prev)return`<div class="change up">★ NEW</div>`;
+  if(!prev)return`<div class="change newm">★ NEW</div>`;
   const diff=prev-m.currentRank;
   if(diff>0)return`<div class="change up">▲${diff}</div>`;
   if(diff<0)return`<div class="change down">▼${Math.abs(diff)}</div>`;
@@ -346,5 +371,6 @@ function showTab(name,el){
   el.classList.add('active');
 }
 </script>
+
 </body>
 </html>
